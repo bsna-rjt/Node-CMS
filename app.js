@@ -30,7 +30,7 @@ app.get("/addBlog",(req,res)=>{
 })
 
 //apo for handling formdata
-app.post("addBlog",upload.single('image'), async (req,res)=>{
+app.post("/addBlog",upload.single('image'), async (req,res)=>{
     console.log("API hitted",req.body)
     console.log("req.file",req.file)
 
@@ -49,7 +49,7 @@ app.post("addBlog",upload.single('image'), async (req,res)=>{
     await blogs.create({
         title:title,
         subTitle,
-        description:description,
+        description,
         imageUrl: req.file.filename
     })
 
