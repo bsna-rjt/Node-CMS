@@ -36,7 +36,7 @@ db.users = require("./userModel.js")(sequelize, DataTypes);
 
 
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: false }).then(() => { //should be false otherwise table will be drop and created again, all data will be deleted otherwise
   console.log("yes re-sync done");
 });
 

@@ -1,5 +1,12 @@
 const express = require("express");
 const { blogs } = require("./model/index.js");
+
+//requiring multerConfig
+const {multer,storage} = require("./middleware/multerConfig.js");
+// const multer = require("./middleware/multerConfig.js").multer;
+// const storage = require("./middleware/multerConfig.js").storage;
+const upload =  multer({storage:storage})
+
 const app = express()
 
 // tell nodejs to require and use .env
@@ -11,8 +18,8 @@ require("./model/index.js");
 app.set("view engine","ejs")
 
 //telling nodejs to accept the incoming data(parsing data)
-app.use(express.json())
-app.use(express.urlencoded({extended:true}))
+app.use(express.json()) //content type = application/json handle
+app.use(express.urlencoded({extended:true})) //content type = application/x-www-form-urlencoded
 
 app.get("/",(req,res)=>{
     res.render("allBlogs")
@@ -23,13 +30,29 @@ app.get("/addBlog",(req,res)=>{
 })
 
 //apo for handling formdata
-app.post("addBlog",async (req,res)=>{
-    // console.log("API hitted",req.body)
-     await blogs.create({
-        title:req.body.title,
-        subTitle:req.body.subtitle,
-        description:req.body.description
+app.post("addBlog",upload.single('image'), async (req,res)=>{
+    console.log("API hitted",req.body)
+    console.log("req.file",req.file)
+
+    // const title = req.body.title;
+    // const subTitle = req.body.subTitle;
+
+    //ALTERNATIVE
+    const {title,subTitle,description} = req.body;
+
+    //  await blogs.create({
+    //     title:req.body.title,
+    //     subTitle:req.body.subtitle,
+    //     description:req.body.description
+    // })
+
+    await blogs.create({
+        title:title,
+        subTitle,
+        description:description,
+        imageUrl: req.file.filename
     })
+
     res.send("Blog created successfully")
 })
 
