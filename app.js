@@ -21,8 +21,10 @@ app.set("view engine","ejs")
 app.use(express.json()) //content type = application/json handle
 app.use(express.urlencoded({extended:true})) //content type = application/x-www-form-urlencoded
 
-app.get("/",(req,res)=>{
-    res.render("allBlogs")
+app.get("/",async (req,res)=>{
+    const allblogs = await blogs.findAll();
+    console.log("allblogs",allblogs)
+    res.render("allBlogs",{allBlogs:allblogs});
 })
 
 app.get("/addBlog",(req,res)=>{
@@ -55,6 +57,9 @@ app.post("/addBlog",upload.single('image'), async (req,res)=>{
 
     res.send("Blog created successfully")
 })
+
+
+app.use(express.static("./uploads/")) // path should NOT be keep empty otherwise security vulnerable
 
 const PORT  = process.env.PORT
 
