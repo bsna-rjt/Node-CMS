@@ -36,7 +36,8 @@
 
         .blog-image {
             width: 100%;
-            height: auto;
+            height: 100px;
+            width: 100px;
         }
 
         .blog-title {
@@ -59,26 +60,27 @@
             text-align: center;
             padding: 10px;
             position: absolute;
-            bottom: 0;
+            bottom: -18px;
             width: 100%;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
+        <a href="/">Home</a>
+        <a href="/addBlog">Add Blog</a>
+        <!-- <a href="#">Contact</a> -->
     </div>
 
     <div class="container">
 
         <% allBlogs.forEach((blog)=>{ %>
             <div class="blog-card">
-                <img class="blog-image" src="<%-blog.imageUrl %>" alt="Blog Image" style="height: 100px;width: 100px;">
+                <img class="blog-image" src="<%-blog.imageUrl %>" alt="Blog Image">
                 <div class="blog-title"><%-blog.title %></div>
                 <div class="blog-subtitle"><%-blog.subTitle %></div>
                 <div class="blog-description"><%-blog.description %></div>
+                <a href="/blogs/<%- blog.id %>">See More</a>
             </div>
         <% }) %>
         <div class="footer">
