@@ -19,10 +19,10 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 sequelize
   .authenticate()
   .then(() => {
-    console.log("CONNECTED!!");
+    // console.log("CONNECTED!!");
   })
   .catch((err) => {
-    console.log("Error" + err);
+    // console.log("Error" + err);
   });
 
 const db = {};
@@ -37,7 +37,7 @@ db.users = require("./userModel.js")(sequelize, DataTypes);
 
 
 db.sequelize.sync({ force: false }).then(() => { //should be false otherwise table will be drop and created again, all data will be deleted otherwise
-  console.log("yes re-sync done");
+  // console.log("yes re-sync done");
 });
 
 module.exports = db;
