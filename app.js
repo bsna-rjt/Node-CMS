@@ -1,5 +1,6 @@
 const express = require("express");
 const { blogs, users } = require("./model/index.js");
+const bcrypt = require("bcrypt");
 
 //requiring multerConfig
 const { multer, storage } = require("./middleware/multerConfig.js");
@@ -173,7 +174,7 @@ app.post("/register",async(req,res)=>{
   await users.create({
     email,
     username,
-    password
+    password : bcrypt.hashSync(password,8) //if used 20 then will use more computation power //more hashed password generation if used 20 //laptop gets slow
   })
   res.send("User registered successfully!")
 })
