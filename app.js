@@ -1,5 +1,5 @@
 const express = require("express");
-const { blogs } = require("./model/index.js");
+const { blogs, users } = require("./model/index.js");
 
 //requiring multerConfig
 const { multer, storage } = require("./middleware/multerConfig.js");
@@ -162,6 +162,21 @@ app.post("/edit/:id", upload.single("image"), async (req, res) => {
   // res.send("Blog Edited Successfully!");
   res.redirect("/blogs/"+id);
 });
+
+//Register User
+app.get("/register",(req,res)=>{
+  res.render("register")
+})
+
+app.post("/register",async(req,res)=>{
+  const {username,email,password} = req.body;
+  await users.create({
+    email,
+    username,
+    password
+  })
+  res.send("User registered successfully!")
+})
 
 app.use(express.static("./uploads/")); // path should NOT be keep empty otherwise security vulnerable
 
