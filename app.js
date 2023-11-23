@@ -70,6 +70,7 @@ app.get("/login", renderLoginForm);
 app.post("/login", loginUser);
 
 app.use(express.static("./uploads/")); // path should NOT be keep empty otherwise security vulnerable
+app.use(express.static("./public/"));
 
 const PORT = process.env.PORT;
 
