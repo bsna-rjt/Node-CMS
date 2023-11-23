@@ -82,11 +82,7 @@
     </style>
   </head>
   <body>
-    <div class="navbar">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <!-- <a href="#">Contact</a> -->
-    </div>
+    <%- include("./navbar.ejs") %>
 
     <div class="container">
       <div class="blog-card">
@@ -101,7 +97,7 @@
         <button><a href="/delete/<%- blog[0].id%>">Delete Me</a></button>
         <button><a href="/edit/<%- blog[0].id%>">Edit Me</a></button>
       </div>
-      <div class="footer">&copy; 2023 CMS</div>
+      <%- include("./footer.ejs") %>
     </div>
   </body>
 </html>

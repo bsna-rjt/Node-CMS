@@ -1,93 +1,83 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-        .navbar {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-        }
+      .navbar {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+      }
 
-        .navbar a {
-            text-decoration: none;
-            color: #fff;
-            margin: 10px;
-        }
+      .navbar a {
+        text-decoration: none;
+        color: #fff;
+        margin: 10px;
+      }
 
-        .container {
-            margin: 20px;
-            position: relative;
-            min-height: 100vh;
-        }
+      .container {
+        margin: 20px;
+        position: relative;
+        min-height: 100vh;
+      }
 
-        .blog-card {
-            border: 1px solid #ccc;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        }
+      .blog-card {
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      }
 
-        .blog-image {
-            width: 100%;
-            height: 100px;
-            width: 100px;
-        }
+      .blog-image {
+        width: 100%;
+        height: 100px;
+        width: 100px;
+      }
 
-        .blog-title {
-            font-size: 24px;
-            font-weight: bold;
-        }
+      .blog-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
 
-        .blog-subtitle {
-            font-size: 18px;
-            color: #888;
-        }
+      .blog-subtitle {
+        font-size: 18px;
+        color: #888;
+      }
 
-        .blog-description {
-            margin-top: 10px;
-        }
+      .blog-description {
+        margin-top: 10px;
+      }
 
-        .footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: absolute;
-            bottom: -18px;
-            width: 100%;
-        }
+      .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: absolute;
+        bottom: -18px;
+        width: 100%;
+      }
     </style>
-</head>
-<body>
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/addBlog">Add Blog</a>
-        <!-- <a href="#">Contact</a> -->
-    </div>
+  </head>
+  <body>
+    <%- include("./navbar.ejs") %>
 
     <div class="container">
-
-        <% allBlogs.forEach((blog)=>{ %>
-            <div class="blog-card">
-                <img class="blog-image" src="<%-blog.imageUrl %>" alt="Blog Image">
-                <div class="blog-title"><%-blog.title %></div>
-                <div class="blog-subtitle"><%-blog.subTitle %></div>
-                <div class="blog-description"><%-blog.description %></div>
-                <a href="/blogs/<%- blog.id %>">See More</a>
-            </div>
-        <% }) %>
-        <div class="footer">
-            &copy; 2023 CMS
-        </div>
+      <% allBlogs.forEach((blog)=>{ %>
+      <div class="blog-card">
+        <img class="blog-image" src="<%-blog.imageUrl %>" alt="Blog Image" />
+        <div class="blog-title"><%-blog.title %></div>
+        <div class="blog-subtitle"><%-blog.subTitle %></div>
+        <div class="blog-description"><%-blog.description %></div>
+        <a href="/blogs/<%- blog.id %>">See More</a>
+      </div>
+      <% }) %> <%- include("./footer.ejs") %>
     </div>
-
-
-</body>
+  </body>
 </html>

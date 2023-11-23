@@ -179,6 +179,38 @@ app.post("/register",async(req,res)=>{
   res.send("User registered successfully!")
 })
 
+//login
+
+app.get("/login",(req,res)=>{
+  res.render("login");
+})
+
+app.post("/login", async (req,res)=>{
+  //access email and password
+  const {email,password} = req.body;
+  if(!email || !password){
+    return res.send("Please provide email and password!");
+  }
+
+  //check if email exists or not
+  const user = await users.findAll({
+    where:{
+      email:email
+    }
+  })
+  if(user.length == 0){
+    res.send("Invalid email or password!");
+  }else{
+    //check password matches or not
+    const isPasswordMatched = bcrypt.compareSync(password,user[0].password);
+    if(!isPasswordMatched){
+      res.send("Loggedin successfully!");
+    }else{
+      res.send("Invalid password!");
+    }
+  }
+})
+
 app.use(express.static("./uploads/")); // path should NOT be keep empty otherwise security vulnerable
 
 const PORT = process.env.PORT;

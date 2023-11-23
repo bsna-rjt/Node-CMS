@@ -24,7 +24,8 @@
         margin: 20px;
       }
 
-      input[type="text"] {
+      input[type="text"],
+      input[type="password"] {
         width: 100%;
         padding: 10px;
         margin: 5px 0;
@@ -52,41 +53,25 @@
     <%- include("./navbar.ejs") %>
 
     <div class="container">
-      <h2>Add Blog</h2>
-      <form action="/addBlog" method="post" enctype="multipart/form-data">
-        <label for="title">Title:</label>
+      <h2>Login User</h2>
+      <form action="/login" method="post">
+        <label for="email">Email:</label>
         <input
           type="text"
-          id="title"
-          name="title"
-          placeholder="Enter the title"
+          id="email"
+          name="email"
+          placeholder="Enter the email"
         /><br />
 
-        <label for="image">Image URL:</label>
+        <label for="password">Password:</label>
         <input
-          type="file"
-          id="image"
-          name="image"
-          placeholder="Enter the image URL"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter the password"
         /><br />
 
-        <label for="subtitle">Subtitle:</label>
-        <input
-          type="text"
-          id="subtitle"
-          name="subTitle"
-          placeholder="Enter the subtitle"
-        /><br />
-
-        <label for="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          placeholder="Enter the description"
-        ></textarea
-        ><br />
-
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Login" />
       </form>
     </div>
 
